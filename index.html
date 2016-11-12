@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        
+        <!--gues i'll add the css here -->
+        
+<style type="text/css">
+ body = { border: 2px solid #73AD21;
+    border-radius: 5px;
+     padding:20px;
+    }
+    
+    
+    h1 {color: firebrick;
+        text-align: center;
+    font-size: 100px;
+    text-shadow: 2px 2px 5px white;
+        
+    }
+    
+    .title {background-color: cornflowerblue;
+    background: linear-gradient(to bottom right, red, yellow);
+    border-radius: 25px;
+    padding-top: 5px;
+     padding-bottom: 5px;
+     padding-left: 110px;
+     padding-right: 110px;
+    opacity: 0.9;
+    margin-bottom: 50px;
+    }
+     
+     .R {border-radius: 25px;
+    border: 2px solid #FF4500;
+    padding: 20px; 
+    width: 800px;
+    height: 1100px;
+    margin-right: auto; margin-left: auto;
+    margin-top: 10px;
+     }
+     
+     p {
+         margin-bottom: 50px;
+     }
+     
+</style>
+        
+    </head>
+    
+<body>
+
+    <hr>
+    <hr>
+    
+ <div class="title">
+<h1>Web Dictionary</h1> 
+</div>
+    
+<div class="R"> 
+   
+<p><center>Enter the word you wish to define:</center></p>
+Enter Word: 
+    <input type="text" id="Definition" placeholder="Enter Text Here">
+    <button id = "Search"> Search </button>
+    <button id = "getAllDefinitions"> All Definitions </button>
+    <div> RESULT</div>
+    <br><br>
+    <div id = "Result"></div>
+    
+    
+
+
+<script>
+    
+    
+    window.onload = function()
+    
+    {
+        var xmlHttp;
+        var SearchButton = document.getElementById("Search");
+        var Result = document.getElementById("result");
+        var def = document.getElementById("Def");
+        
+        SearchButton.addEventListener('click',function(){
+            
+            var entry = document.getElementById("Definition").value;
+            
+            xmlHttp = new XMLHttpRequest();
+            
+            url = 'request.php?q='+entry;
+            
+            xmlHttp.onreadystatechange = Request;
+            xmlHttp.open('GET',global url);
+            xmlHttp.send();
+        });
+        
+        
+        
+    
+    function Request()
+        {
+            if(xmlHttp.readyState ===XMLHttpRequest.DONE)
+                {
+                    if(xmlHttp.status === 200)
+                        {
+                            var def = getHTTP.responseText;
+                            console.log(def);
+                            document.getElementById("result").innerHTML = def;
+                            
+                            Result.innerHTML = xmlHttp.responseText;
+                        }
+                }
+        }
+    
+    function getAllDefinitions() {
+
+	var url = "request.php?q="+Result.getAttribute('all');
+	Request().onreadystatechange = Request;
+	Request().open("GET", url);
+	Request().send();
+}
+    }
+      ;
+    
+    
+    /*
+    {
+    
+
+    
+        
+        
+        document.getElementById("Definition").addEventListener("click", function (event)
+            {
+                event.preventDefault();
+                var getHTTP = new XMLHttpRequest;
+                var url = "request.php?q="+document.getElementById("Definition").value;
+                getHTTP.onreadystatechange = getHTML;
+                getHTTP.open("Get",url);
+                getHTTP.send();
+            });
+        
+//var definition = <?php echo json_encode($definition); ?>;
+//function Definition() {
+  //   var x = document.getElementById("Definition").value;
+    //document.getElementById("printsumn").innerHTML = x;
+}
+    
+    
+
+    //}
+    
+    */
+</script>
+</div>
+
+
+</body>
+</html>
